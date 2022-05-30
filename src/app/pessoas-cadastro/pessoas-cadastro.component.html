@@ -1,0 +1,73 @@
+<div class="ui-g">
+    <p-toast></p-toast>
+    <p-dialog header="Nova Pessoa" [responsive]="true" [style]="{width: '400px'}" [(visible)]="displaySaveDialog" [closable]="false" [modal]="true">
+            <div class="ui-g ui-fluid" *ngIf="pessoas">
+                <div class="ui-g ui-fluid" >
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="year">Nome</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="nome" [(ngModel)]="pessoas.nome" required/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="brand">Telefone</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="telefone" [(ngModel)]="pessoas.telefone" />
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="direccion">Idade</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="idade" [(ngModel)]="pessoas.idade" />
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="telefono">Região</label>
+                        </div>
+                        <div class="ui-g-8">
+                           
+                            <p-dropdown [options]="afinidadesList" optionLabel="regiao" (onChange)="configuraComboEstados($event)" [(ngModel)]="selectedRegiao" placeholder="Selecione"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="telefono">Estado</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <p-dropdown [options]="ufList" optionLabel="estado" (onChange)="verificaValor($event)" [(ngModel)]="selectedUF" placeholder="Selecione"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="telefono">Cidade</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="cidade" [(ngModel)]="pessoas.cidade" />
+                        </div>
+                    </div>            
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <label for="telefono">Score</label>
+                        </div>
+                        <div class="ui-g-8">
+                                <p-inputNumber placeholder="Numérico até 1000" [(ngModel)]="pessoas.score" minValue="0"    maxValue="1000" decimalPlaces="0"></p-inputNumber>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton icon="fa fa-check" (click)="validate()" label="Salvar" ></button>
+                </div>
+
+            </p-footer>
+    </p-dialog>
+</div>
+

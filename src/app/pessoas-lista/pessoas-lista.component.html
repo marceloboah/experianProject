@@ -1,0 +1,39 @@
+<div class="ui-g">
+    <p-toast></p-toast>
+    <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <p-panel header="Administração de Pessoas" [style]="{width: '90%', margin: '0 auto'}">
+        <p-table #dt [value]="pessoasList" [columns]="cols" [responsive]="true" selectionMode="single" [(selection)]="selectedPessoas" 
+            dataKey="id" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                    </th>
+
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'nome'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'idade'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'scoreDescricao'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pessoas let-columns="columns">
+                <tr [pSelectableRow]="pessoas">
+                    <td >
+                        <a [routerLink]="" (click)="detalhesPessoa(pessoas)">{{pessoas['nome']}}</a>
+                    </td>
+                    <td >
+                        {{pessoas['idade']}}
+                    </td>
+                    <td >
+                        {{pessoas['scoreDescricao']}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</div>
