@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
-//import { PersonaComponent } from './persona/persona.component';
 import { HttpClientModule } from '@angular/common/http';
 import {PanelModule} from 'primeng/panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,18 +22,21 @@ import { PessoasDetalheComponent } from './pessoas-detalhe/pessoas-detalhe.compo
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import { ScoreListaComponent } from './score-lista/score-lista.component';
 import { AfinidadeCadastroComponent } from './afinidade-cadastro/afinidade-cadastro.component';
-import {DropdownModule} from 'primeng/dropdown'; 
+import { DropdownModule } from 'primeng/dropdown'; 
 import { InputNumberModule } from "primeng/inputnumber";
+import { ListboxModule } from 'primeng/listbox';
+import { SelectItemGroup } from 'primeng/api';
+import { AfinidadeListaComponent } from './afinidade-lista/afinidade-lista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    //PersonaComponent,
     PessoasListaComponent,
     PessoasDetalheComponent,
     PessoasCadastroComponent,
     ScoreListaComponent,
-    AfinidadeCadastroComponent
+    AfinidadeCadastroComponent,
+    AfinidadeListaComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { InputNumberModule } from "primeng/inputnumber";
     ConfirmDialogModule,
     Ng2SearchPipeModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    ListboxModule
   ],
   providers: [
     MessageService,

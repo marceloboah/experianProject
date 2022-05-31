@@ -5,6 +5,7 @@ import { PessoasDetalheComponent } from './pessoas-detalhe/pessoas-detalhe.compo
 import { PessoasListaComponent } from './pessoas-lista/pessoas-lista.component';
 import { ScoreListaComponent } from './score-lista/score-lista.component';
 import { AfinidadeCadastroComponent } from './afinidade-cadastro/afinidade-cadastro.component';
+import { AfinidadeListaComponent } from './afinidade-lista/afinidade-lista.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'pessoas', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'pessoas/cadastro', component: PessoasCadastroComponent },
   { path: 'scores', component: ScoreListaComponent },
   { path: 'afinidades/cadastro', component: AfinidadeCadastroComponent },
+  { path: 'afinidades', component: AfinidadeListaComponent },
   { path: '**', redirectTo: 'pessoas' }
 ];
 

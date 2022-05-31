@@ -10,18 +10,15 @@ import { TokenService } from '../service/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PessoasCadastroService {
+export class AfinidadeListaService {
 
   baseUrl:string = "http://localhost:9099"
   objToken:any = null;
   constructor(private http:HttpClient, private tokenService:TokenService) { }
 
-
-  
-
-
   public getListAfinidades() : Observable<any>{
     this.tokenService.getToken();
+
     this.objToken=this.tokenService.getToken();
     var headers = new HttpHeaders();
     headers.set('Content-Type','application/json');
@@ -31,14 +28,4 @@ export class PessoasCadastroService {
     return this.http.get(url, {headers: headers });
 
   }
-
-  public save(pessoa:any){
-    let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    var token = 'Bearer '+localStorage.getItem("experian-token");
-    headers.set('Authorization',token);
-    return this.http.post(this.baseUrl+ "/pessoa", pessoa, {headers: headers})
-  }
-
-
 }

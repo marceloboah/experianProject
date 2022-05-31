@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PessoasCadastro } from 'src/model/pessoas-cadastro';
+import { ScoreList } from 'src/model/score-list';
 import { Token } from 'src/model/token';
 import { TokenService } from '../service/token.service';
 
@@ -10,35 +10,35 @@ import { TokenService } from '../service/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PessoasCadastroService {
+export class ScoreListaService {
+
+    pessoasList: ScoreList[];
+    pessoas: ScoreList = {
+      id: null,
+      scoreDescricao: null,
+      inicial: null,
+      final: null
+    }
+    
 
   baseUrl:string = "http://localhost:9099"
   objToken:any = null;
-  constructor(private http:HttpClient, private tokenService:TokenService) { }
+  constructor(public http:HttpClient, private tokenService:TokenService) {  }
 
 
-  
-
-
-  public getListAfinidades() : Observable<any>{
+  public getAll() : Observable<any>{
     this.tokenService.getToken();
     this.objToken=this.tokenService.getToken();
     var headers = new HttpHeaders();
     headers.set('Content-Type','application/json');
     var token = 'Bearer '+localStorage.getItem("experian-token");
     headers.set('Authorization',token);
-    var url = this.baseUrl+ "/afinidade";
+    var url = this.baseUrl+ "/score";
     return this.http.get(url, {headers: headers });
 
   }
 
-  public save(pessoa:any){
-    let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    var token = 'Bearer '+localStorage.getItem("experian-token");
-    headers.set('Authorization',token);
-    return this.http.post(this.baseUrl+ "/pessoa", pessoa, {headers: headers})
-  }
+
 
 
 }

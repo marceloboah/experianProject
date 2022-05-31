@@ -2,6 +2,9 @@
     <p-toast></p-toast>
     <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>
     <p-panel header="Administração de Pessoas" [style]="{width: '90%', margin: '0 auto'}">
+        <div style="margin-bottom: 20px">
+            <p-menubar [model]="items"></p-menubar>
+        </div>
         <p-table #dt [value]="pessoasList" [columns]="cols" [responsive]="true" selectionMode="single" [(selection)]="selectedPessoas" 
             dataKey="id" [paginator]="true" [rows]="10">
             <ng-template pTemplate="header" let-columns>

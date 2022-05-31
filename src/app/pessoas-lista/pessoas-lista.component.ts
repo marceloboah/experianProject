@@ -4,9 +4,9 @@ import { TokenService } from '../service/token.service';
 import { Token } from 'src/model/token';
 import { PessoasListaService } from '../service/pessoas-lista.service';
 import { PessoasList } from 'src/model/pessoas-list';
-import {MenuItem} from 'primeng/api';
-import {MessageService} from 'primeng/api';
-import {ConfirmationService} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -56,19 +56,19 @@ export class PessoasListaComponent implements OnInit {
 
     this.items = [
       {
-        label : "Novo",
+        label : "Cadastra Pessoa",
         icon: 'pi pi-fw pi-plus',
-        command : ()=> this.deletar()
+        command : ()=> this.openCadastraPessoa()
       },
       {
-        label : "Editar",
-        icon: 'pi pi-fw pi-pencil',
-        command : ()=> this.deletar()
+        label : "Lista Score",
+        icon: 'pi pi-fw pi-list',
+        command : ()=> this.openScoreList()
       },
       {
-        label : "Excluir",
-        icon: 'pi pi-fw pi-times',
-        command : ()=> this.deletar()
+        label : "Cadastra Afinidade",
+        icon: 'pi pi-fw pi-plus',
+        command : ()=> this.openCadastraAfinidade()
       }
     ]
     this.getAll();
@@ -78,36 +78,44 @@ export class PessoasListaComponent implements OnInit {
   getToken(){
     this.tokenService.getToken();
   }
-  deletar(){
-
+  openCadastraPessoa(){
+    this.router.navigate(["/pessoas/cadastro"]);
   }
+  openScoreList(){
+    this.router.navigate(["/scores"]);
+  }
+  openCadastraAfinidade(){
+    this.router.navigate(["/afinidades/cadastro"]);
+  }
+      
 
   getAll() {
     
     this.pessoasListaService.getAll().subscribe(
       (result: any)=>{
-        let personas: PessoasList[] = [];
+        if(result==null){
+          this.messageService.add({severity : 'warn', summary : 'Advertencia!', detail: "Não existem dados na banco de dados para esta lista!"});
+          return;
+        }
+        let pessoasList: PessoasList[] = [];
         for (var index = 0; index < result.length; index++) {
-          var persona = result[index] as PessoasList;
-          personas[index]  = persona;
+          var pessoa = result[index] as PessoasList;
+          pessoasList[index]  = pessoa;
           
         }
-        this.pessoasList  = personas;
-          console.log("vai obj");
-          console.log(this.pessoasList);
+        this.pessoasList  = pessoasList;
+        
+          
       },
       error =>{
         console.log(error);
       }
 
     )
-    
-
    
   }
 
   detalhesPessoa(pessoas:any){
-    console.log("detalhesPessoa"+pessoas.id);
     this.router.navigate(["/pessoa/"+pessoas.id]);
   }
 

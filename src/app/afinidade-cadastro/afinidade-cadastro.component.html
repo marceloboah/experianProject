@@ -1,1 +1,31 @@
-<p>afinidade-cadastro works!</p>
+    <p-toast></p-toast>
+    <p-panel header="Cadastra Afinidade"  [toggleable]="true">
+            <div class="ui-g ui-g-12"  >
+                <div class="ui-g ui-g-12" >
+                    <div class="ui-g-6" >
+                        <label for="regiao">Região</label>
+                    </div>
+                    
+                    <div class="ui-g-6" >
+                        <label for="regiao">Estados</label>
+                    </div>
+
+                    <div class="ui-g-6" >
+                        <input pInputText [style]="{'width': '100%'}" id="regiao" [(ngModel)]="afinidade.regiao" required/>
+                    </div>
+                    <div class="ui-g-6">
+                            <p-listbox multiple="multiple" [listStyle]="{'max-height':'200px'}" [style]="{'width': '100%'}" checkbox="checkbox"  [options]="uf" [(ngModel)]="selectedUF" optionLabel="uf"></p-listbox>
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton icon="fa fa-check" (click)="validate()" label="Salvar" ></button>
+                </div>
+            </p-footer>
+    </p-panel>
+    <p-panel header="Lista Afinidade"  [toggleable]="true">
+
+        <app-afinidade-lista></app-afinidade-lista>
+
+    </p-panel>

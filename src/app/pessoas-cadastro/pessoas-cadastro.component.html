@@ -5,7 +5,7 @@
                 <div class="ui-g ui-fluid" >
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="year">Nome</label>
+                            <label for="nome">Nome</label>
                         </div>
                         <div class="ui-g-8">
                             <input pInputText id="nome" [(ngModel)]="pessoas.nome" required/>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="brand">Telefone</label>
+                            <label for="telefone">Telefone</label>
                         </div>
                         <div class="ui-g-8">
                             <input pInputText id="telefone" [(ngModel)]="pessoas.telefone" />
@@ -21,7 +21,7 @@
                     </div>
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="direccion">Idade</label>
+                            <label for="idade">Idade</label>
                         </div>
                         <div class="ui-g-8">
                             <input pInputText id="idade" [(ngModel)]="pessoas.idade" />
@@ -29,7 +29,7 @@
                     </div>
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="telefono">Região</label>
+                            <label for="regiao">Região</label>
                         </div>
                         <div class="ui-g-8">
                            
@@ -38,15 +38,15 @@
                     </div>
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="telefono">Estado</label>
+                            <label for="estado">Estado</label>
                         </div>
                         <div class="ui-g-8">
-                            <p-dropdown [options]="ufList" optionLabel="estado" (onChange)="verificaValor($event)" [(ngModel)]="selectedUF" placeholder="Selecione"></p-dropdown>
+                            <p-dropdown [options]="ufList" optionLabel="estado"  [(ngModel)]="selectedUF" placeholder="Selecione"></p-dropdown>
                         </div>
                     </div>
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="telefono">Cidade</label>
+                            <label for="cidade">Cidade</label>
                         </div>
                         <div class="ui-g-8">
                             <input pInputText id="cidade" [(ngModel)]="pessoas.cidade" />
@@ -54,7 +54,7 @@
                     </div>            
                     <div class="ui-g-12">
                         <div class="ui-g-4">
-                            <label for="telefono">Score</label>
+                            <label for="score">Score</label>
                         </div>
                         <div class="ui-g-8">
                                 <p-inputNumber placeholder="Numérico até 1000" [(ngModel)]="pessoas.score" minValue="0"    maxValue="1000" decimalPlaces="0"></p-inputNumber>

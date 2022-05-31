@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoasCadastroService } from '../service/pessoas-cadastro.service';
 import { PessoasCadastro } from 'src/model/pessoas-cadastro';
-import { Afinidade } from 'src/model/afinidades-list';
-import {DropdownModule} from 'primeng/dropdown'; 
-import {MessageService} from 'primeng/api';
-import {ConfirmationService} from 'primeng/api';
+import { Afinidade } from 'src/model/afinidade';
+import { DropdownModule } from 'primeng/dropdown'; 
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { InputNumberModule } from "primeng/inputnumber";
 import { Router } from '@angular/router';
 
@@ -37,6 +37,7 @@ export class PessoasCadastroComponent implements OnInit {
     id: null,
     regiao: null,
     estados: null
+    
   }
   employes:any=null;
   ufList:any=null;
@@ -47,13 +48,12 @@ export class PessoasCadastroComponent implements OnInit {
   constructor(private pessoasCadastroService: PessoasCadastroService, private router: Router, private messageService: MessageService, private confirmationService: ConfirmationService) {   }
   
   ngOnInit(): void {
-    this.getListAtividades();
+    this.getListAfinidades();
     
   }
 
   validate(){
     this.isValid=true;
-    console.log(this.pessoas);
     if(this.pessoas.nome=="" || !this.pessoas.nome || this.pessoas.nome==null ){
       this.isValid=false;
       this.messageService.add({severity : 'warn', summary : 'Advertencia!', detail: "Preencha o campo Nome!"});
@@ -101,12 +101,9 @@ export class PessoasCadastroComponent implements OnInit {
 
 
   save(){
-    console.log("save");
     if(this.isValid){
-      console.log("valid");
       this.pessoasCadastroService.save(this.pessoas).subscribe(
         (result:any) => {
-          console.log(result);
           this.messageService.add({severity: 'success', summary:'Resultado', detail: "Item salvo"});
           this.router.navigate(["/pessoas"]);
   
@@ -118,18 +115,15 @@ export class PessoasCadastroComponent implements OnInit {
     }   
   }
 
-  verificaValor(event){
+  /*verificaValor(event){
     console.log(event.value);
     console.log(this.selectedUF.estado);
-  }
+  }*/
   configuraComboEstados(event){
-    console.log(this.selectedRegiao.regiao);
     this.ufList=this.selectedRegiao.estados;
-    console.log(this.ufList);
-
   }
 
-  getListAtividades(){
+  getListAfinidades(){
 
     this.pessoasCadastroService.getListAfinidades().subscribe(
       (result: any)=>{
@@ -140,8 +134,6 @@ export class PessoasCadastroComponent implements OnInit {
           
         }
         this.afinidadesList  = afinidadesList;
-          console.log("vai obj afinidadesList");
-          console.log(this.afinidadesList);
       },
       error =>{
         console.log(error);
